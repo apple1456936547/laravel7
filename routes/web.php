@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 
+
 // Route:: 請求方式 ('網址',function(){要做的事情})
 // 第一個參數是網址 (隨便寫 只是取名)
 Route::get('/test',function(){
@@ -63,9 +64,11 @@ Route::get('/apple', function () {
 // });
 
 Route::get('/apple',function(){
-$name ='leo';
+    $name ='leo';
     $age = '18';
     $gender = 'male';
+
+    
 
     // return view('apple',['name' => $name,'age' => $age,'gender' => $gender]);
 
@@ -79,5 +82,7 @@ $name ='leo';
 
 Route::get('/news', function () {
     return view('news');
+
 });
+
 
