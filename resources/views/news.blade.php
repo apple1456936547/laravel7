@@ -111,7 +111,7 @@
     <div class="card">
         <div class="img"></div>
         <div class="content">
-            <a href="#">
+            <a href="http://127.0.0.1:8000/news_page1">
                 <div class="title">「台灣觀巴」優質貼心服務伴您便捷暢遊全臺」</div>
             </a>
             <div class="date">2020-12-24</div>
@@ -126,7 +126,7 @@
     <div class="card">
         <div class="img2"></div>
         <div class="content">
-            <a href="#">
+            <a href="http://127.0.0.1:8000/news_page2">
                 <div class="title">
                     觀光局視各縣市政府執行需求 評估增撥安心旅遊行政費
                 </div>

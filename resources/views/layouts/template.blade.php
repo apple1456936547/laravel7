@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css">
 
-    @yield('link')
+
     <style>
         body {
             margin:0;
@@ -25,18 +25,16 @@
         ul {
             list-style:none;
             padding:0;
-            margin:0;
+            margin:10px 0 0 0;
 
             display:flex;
             align-items:center;
 
-            height:100%;
             width:100%;
         }
 
         li {
             margin:auto;
-            margin-bottom:70px;
         }
 
         main {

@@ -68,7 +68,7 @@ Route::get('/apple',function(){
     $age = '18';
     $gender = 'male';
 
-    
+
 
     // return view('apple',['name' => $name,'age' => $age,'gender' => $gender]);
 
@@ -83,6 +83,14 @@ Route::get('/apple',function(){
 Route::get('/news', function () {
     return view('news');
 
+});
+
+Route::get('/news_page1', function () {
+    return view('news_page1');
+});
+
+Route::get('/news_page2', function () {
+    return view('news_page2');
 });
 
 
