@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -80,17 +80,29 @@ Route::get('/apple',function(){
     return view('apple')->with(compact('name','age','gender'));
 });
 
-Route::get('/news', function () {
-    return view('news');
+// Route::get('/news', function () {
+//     return view('news');
 
-});
+// });
 
-Route::get('/news_page1', function () {
-    return view('news_page1');
-});
+// Route::get('網址','NewsController@函式名稱');
 
-Route::get('/news_page2', function () {
-    return view('news_page2');
-});
+Route::get('/news','NewsController@index');
+
+Route::get('/news_detail','NewsController@detail');
+
+// 上面兩個是最新消息 第一個最新消息首頁 第二個是最消消息分頁
+// 因為在同一個分類裡面所以寫在同一個Controller裡面
+
+Route::get('/','FrontController@index');
+// test : 自己寫一個新的Controller讓welcome顯示出來
+
+// Route::get('/news_page1', function () {
+//     return view('news_page1');
+// });
+
+// Route::get('/news_page2', function () {
+//     return view('news_page2');
+// });
 
 

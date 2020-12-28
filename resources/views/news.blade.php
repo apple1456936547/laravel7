@@ -108,21 +108,21 @@
 @section('main')
 
 <div class="container">
+    <h1>最新消息</h1>
+    @foreach ($news_data as $a)
     <div class="card">
-        <div class="img"></div>
+        <div class="img" style="background-image:url({{$a->img}}); width:200px;height:200px;"></div>
         <div class="content">
-            <a href="http://127.0.0.1:8000/news_page1">
-                <div class="title">「台灣觀巴」優質貼心服務伴您便捷暢遊全臺」</div>
-            </a>
-            <div class="date">2020-12-24</div>
+                <div class="title">{{$a->title}}</div>
+            <div class="date">{{$a->date}}</div>
             <div class="text">
-                109年「台灣觀巴」優良管理業者、最佳優質路線及最佳服務人員評選結果揭曉。交通部觀光局為提供國內外旅客在臺灣的便利觀光旅遊服務，自93年度起推出「台灣觀巴」套裝旅遊產品，其以優質多元行程與便捷貼心服務，成為台灣旅遊的優質品牌。本年經評選出服務品質優化績優業者前3名、最佳優質路線前10名、服務品質優良獎業者1名及最佳服務人員8名，並於今日假觀光局台北旅遊服務中心舉行頒獎典禮。
+               {{$a->content}}
             </div>
         </div>
     </div>
+    @endforeach
 </div>
-
-<div class="container">
+{{-- <div class="container">
     <div class="card">
         <div class="img2"></div>
         <div class="content">
@@ -201,21 +201,6 @@
 
 <div class="container">
     <div class="card">
-        <div class="img7"></div>
-        <div class="content">
-            <a href="#">
-                <div class="title">「2021台灣燈會」轉型再升級 『乘風逐光』未來感主燈 展現科技藝術新境界</div>
-            </a>
-            <div class="date">2020-12-24</div>
-            <div class="text">
-                「2021台灣燈會」主燈於今日（109年12月7日）假圓山大飯店發表。本屆主燈以「乘風逐光」為名，結合以「風光」為特色元素，竹藝燈籠將運用機械裝置，使108根竹子呈現出如風一般地的律動，以新竹聞名的玻璃為素材，呈現不同以往的高科技的未來感主燈。 交通部部長林佳龍、新竹市市長林智堅、交...
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="card">
         <div class="img8"></div>
         <div class="content">
             <a href="#">
@@ -258,7 +243,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 
