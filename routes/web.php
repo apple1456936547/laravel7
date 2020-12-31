@@ -87,8 +87,11 @@ Route::get('/apple',function(){
 
 // Route::get('網址','NewsController@函式名稱');
 
+
+// 最新消息首頁
 Route::get('/news','NewsController@index');
 
+// 最新消息內頁
 Route::get('/news_detail','NewsController@detail');
 
 // 上面兩個是最新消息 第一個最新消息首頁 第二個是最消消息分頁
@@ -104,5 +107,8 @@ Route::get('/','FrontController@index');
 // Route::get('/news_page2', function () {
 //     return view('news_page2');
 // });
+
+// 最新消息-新增資料
+Route::get('/news_create','NewsController@create');
 
 
