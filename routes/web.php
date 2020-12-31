@@ -111,4 +111,12 @@ Route::get('/','FrontController@index');
 // 最新消息-新增資料
 Route::get('/news_create','NewsController@create');
 
+Route::get('/product','ProductController@index');
+
+Route::get('/create_product','ProductController@create');
+
+Route::get('/update_product','ProductController@update');
+
+
+
 
