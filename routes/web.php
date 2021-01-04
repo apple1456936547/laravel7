@@ -117,6 +117,23 @@ Route::get('/create_product','ProductController@create');
 
 Route::get('/update_product','ProductController@update');
 
+// 聯絡我們 index route
+// Route::get('/contact_us','ContactUsController@index');
+
+// 儲存資料
+// Route::post('/contact_us/store','ContactUsController@store');
+
+
+Route::prefix('contact_us')->group(function (){
+
+    Route::get('/','ContactUsController@index');
+    Route::get('/create','ContactUsController@create');
+    Route::post('/store','ContactUsController@store');
+
+});
+
+
+
 
 
 
