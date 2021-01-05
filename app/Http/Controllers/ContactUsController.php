@@ -15,7 +15,7 @@ class ContactUsController extends Controller
 
         $contact_us_data = ContactUs::get();
 
-        
+
 
         // 這裡的前端畫面放在
         // layouts裡面 所以寫
@@ -65,11 +65,53 @@ class ContactUsController extends Controller
 
         // return $request;
 
+
     ContactUs::create($request->all());
 
     $request = ContactUs::get();
 
-    return $request;
+    // return $request;
 
+    return redirect('/contact_us');
+    // 回到首頁
+
+    }
+
+    public function edit($id) {
+
+       $data = ContactUs::find($id);
+       return view('contact_us.edit',compact('data'));
+
+        // compact 資料帶出去
+
+    }
+
+    public function update(Request $request,$id) {
+
+        $data = ContactUs::find($id);
+
+        // dd($data->name=$request->name);
+
+        $data->name = $request->name;
+
+        $data->phone = $request->phone;
+
+        $data->email = $request->email;
+
+        $data->title = $request->title;
+
+        $data->content = $request->content;
+
+        $data-> save();
+
+        return redirect('/contact_us');
+    }
+
+    public function destroy($id) {
+
+        //
+        $data = ContactUs::find($id)-> delete();
+
+        return redirect('/contact_us');
     }
 }

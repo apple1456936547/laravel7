@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -130,7 +131,30 @@ Route::prefix('contact_us')->group(function (){
     Route::get('/create','ContactUsController@create');
     Route::post('/store','ContactUsController@store');
 
+    Route::get('/edit/{id}','ContactUsController@edit');
+    Route::post('/update/{id}','ContactUsController@update');
+
+    Route::get('/destroy/{id}','ContactUsController@destroy');
 });
+
+// 利用 get 傳送資料
+// 打完 route 後
+// 去/test 後面打 ?ans=5
+// 那麼資料就會傳送到後端 存在 $request 裡面
+// 再使用dd印出 $request 的 ans
+// 這裡的 ans 是當初寫資料傳送時 名字是寫 ans
+// Route::get('/test',function(Request $request){
+
+//     // import Illuminate\Http\Request
+//     dd($request->ans);
+
+// });
+
+// Route::get('/test2/{id?}/{name?}', function ($id='abc',$name='Lucy') {
+
+//     dd($id,$name);
+
+// });
 
 
 
