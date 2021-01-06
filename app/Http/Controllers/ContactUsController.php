@@ -112,6 +112,6 @@ class ContactUsController extends Controller
         //
         $data = ContactUs::find($id)-> delete();
 
-        return redirect('/contact_us');
+        // return redirect('/contact_us');
     }
 }

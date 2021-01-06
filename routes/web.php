@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -125,17 +126,17 @@ Route::get('/update_product','ProductController@update');
 // Route::post('/contact_us/store','ContactUsController@store');
 
 
-Route::prefix('contact_us')->group(function (){
+// Route::prefix('contact_us')->group(function (){
 
-    Route::get('/','ContactUsController@index');
-    Route::get('/create','ContactUsController@create');
-    Route::post('/store','ContactUsController@store');
+//     Route::get('/','ContactUsController@index');
+//     Route::get('/create','ContactUsController@create');
+//     Route::post('/store','ContactUsController@store');
 
-    Route::get('/edit/{id}','ContactUsController@edit');
-    Route::post('/update/{id}','ContactUsController@update');
+//     Route::get('/edit/{id}','ContactUsController@edit');
+//     Route::post('/update/{id}','ContactUsController@update');
 
-    Route::get('/destroy/{id}','ContactUsController@destroy');
-});
+//     Route::get('/destroy/{id}','ContactUsController@destroy');
+// });
 
 // 利用 get 傳送資料
 // 打完 route 後
@@ -156,8 +157,26 @@ Route::prefix('contact_us')->group(function (){
 
 // });
 
+Route::prefix('contact_us')->group(function (){
+    Route::get('/create','ContactUsController@create');
+    Route::post('/store','ContactUsController@store');
 
+    // 將要驗證的 route 放在路由群組裡面
+    Route::middleware('auth')->group(function() {
+        Route::get('/','ContactUsController@index');
+        Route::get('/edit/{id}','ContactUsController@edit');
+        Route::post('/update/{id}','ContactUsController@update');
+        Route::get('/destroy/{id}','ContactUsController@destroy');
+    });
 
+});
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', function () {
+    return 'success';
+})->middleware('auth');
 
 
