@@ -14,11 +14,12 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        //
-        $product_types = ProductType::get();
+        // 用 with 提早取資料
+        // 疑問
+        // $product_types = ProductType::with('products')->get();
+
         return view('admin.product_type.index',compact('product_types'));
     }
-
     /**
      * Show the form for creating a new resource.
      *

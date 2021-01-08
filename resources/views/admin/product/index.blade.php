@@ -27,7 +27,13 @@
         @foreach($products as $product)
         <tbody>
             <tr>
-                <td>{{$product->type_id}}</td>
+                {{-- <td>{{$product->$product_type->name}}</td> --}}
+
+                {{-- function 名稱
+                    / 關聯資料表的方法-->
+                    Product Model 裡面的 public function productType (然後將自己的 type_id 對上 對方的 id)
+                    / ProductType 的 id 的名字 --}}
+                <td>{{$product->productType->name ?? ''}}</td>
                 <td>{{$product->name}}</td>
                 <td>{{$product->price}}</td>
                 <td><img width="200" src="{{$product->img}}" alt=""></td>

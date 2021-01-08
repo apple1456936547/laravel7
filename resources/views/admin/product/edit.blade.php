@@ -14,8 +14,13 @@
         @csrf
         <div class="form-group">
             <label for="type_id">類別</label>
-            <input type="number" class="form-control" min="1" id="type_id" name="type_id"
-            value={{$product->type_id}} required>
+            {{-- 下拉式選單 --}}
+            <select class="form-control" id="type_id" name="type_id" required>
+                @foreach ($product_types as $product_type)
+                <option value="{{$product_type->id}}"
+                    @if ($product->type_id == $product_type ->id)selected @endif>{{$product_type->name}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="name">產品名稱</label>

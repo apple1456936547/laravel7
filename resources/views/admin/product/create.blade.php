@@ -14,8 +14,16 @@
 
         <div class="form-group">
             <label for="type_id">類別</label>
-            <input type="number" class="form-control" min="1" id="type_id" name="type_id" required>
+            {{-- 下拉式選單 --}}
+
+            <select class="form-control" id="type_id" name="type_id" required>
+                @foreach ($product_types as $product_type)
+                <option value="{{$product_type->id}}">{{$product_type->name}}</option>
+                @endforeach
+            </select>
+            
         </div>
+
         <div class="form-group">
             <label for="name">產品名稱</label>
             <input type="text" class="form-control" id="name" name="name" required>

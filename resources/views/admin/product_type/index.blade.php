@@ -11,13 +11,18 @@
 @endsection
 
 @section('main')
+
+{{-- ProductType 裡面寫的function名稱 --}}
+
+<?php //dd($product_types); ?>
+
 <div class="container py-5">
     <a class="btn btn-success" href="/admin/product_type/create">新增產品類別</a>
     <hr>
     <table id="myTable" class="display">
         <thead>
             <tr>
-                <th>類別名稱</th>
+                <th>名稱</th>
                 <th style="width:120px;">功能</th>
             </tr>
         </thead>

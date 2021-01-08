@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,7 +18,8 @@ class ProductController extends Controller
         //
 
         $products = Product::get();
-        return view('admin.product.index',compact('products'));
+
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -27,9 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.product.create');
-
+        $product_types = ProductType::get();
+        // 抓到資料要打包
+        return view('admin.product.create', compact('product_types'));
     }
 
     /**
@@ -64,10 +66,17 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product_types = ProductType::get();
 
+        // $product = Product::find($id);
+        // 在取資料時同時取得關聯的資料
+        // $product = Product::with('productType')->find($id);
+
+        // 、需要資料才利用關聯的function取得資料
         $product = Product::find($id);
-        return view('admin.product.edit',compact('product'));
+        // dd($product->productType->name);
+
+        return view('admin.product.edit', compact('product', 'product_types'));
     }
 
     /**
@@ -82,10 +91,10 @@ class ProductController extends Controller
         //
         $product = Product::find($id);
         $product->type_id = $request->type_id;
-        $product->name=$request->name;
-        $product->price=$request->price;
-        $product->description=$request->description;
-        $product->img=$request->img;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->img = $request->img;
 
         $product->save();
 
