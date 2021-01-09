@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductType;
+
+use App\NewsNews;
+use App\NewsNewsType;
 use Illuminate\Http\Request;
 
-class ProductTypeController extends Controller
+class NewsNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +16,11 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        // 用 with 提早取資料
-        // 疑問
-        // $product_types = ProductType::with('products')->get();
-
-        $product_types = ProductType::get();
-
-        return view('admin.product_type.index',compact('product_types'));
+        //
+        $news_news = NewsNews::get();
+        return view('admin.news_news.index',compact('news_news'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +29,8 @@ class ProductTypeController extends Controller
     public function create()
     {
         //
-        return view('admin.product_type.create');
+        $news_news_types = NewsNewsType::get();
+        return view('admin.news_news.create',compact('news_news_types'));
     }
 
     /**
@@ -42,8 +42,8 @@ class ProductTypeController extends Controller
     public function store(Request $request)
     {
         //
-        ProductType::create($request->all());
-        return redirect('/admin/product_type');
+        NewsNews::create($request->all());
+        return redirect('/admin/news_news');
     }
 
     /**
@@ -65,9 +65,10 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        //
-        $product_type = ProductType::find($id);
-        return view('admin.product_type.edit',compact('product_type'));
+        $news_news = NewsNews::find($id);
+        $news_news_types = NewsNewsType::get();
+
+        return view('admin.news_news.edit',compact('news_news','news_news_types'));
     }
 
     /**
@@ -79,15 +80,14 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $news_news = NewsNews::find($id);
+        $news_news->type_id = $request->type_id;
+        $news_news->title = $request->title;
+        $news_news->content = $request->content;
+        $news_news->date = $request->date;
+        $news_news->save();
 
-        $product_type = ProductType::find($id);
-
-        $product_type->name=$request->name;
-
-        $product_type->save();
-
-        return  redirect('/admin/product_type');
+        return redirect('/admin/news_news');
     }
 
     /**
@@ -98,9 +98,8 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $product_type = ProductType::find($id);
-        $product_type->delete();
-        return redirect('/admin/product_type');
+        $news_news = NewsNews::find($id);
+        $news_news->delete();
+        return redirect('/admin/news_news');
     }
 }

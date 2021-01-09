@@ -50,6 +50,32 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/update/{id}', 'ProductTypeController@update');
         Route::get('/destroy/{id}', 'ProductTypeController@destroy');
     });
+
+    // 最新消息
+    Route::group(['prefix' => 'news_news'], function () {
+        Route::get('/', 'NewsNewsController@index');
+
+        Route::get('/create', 'NewsNewsController@create');
+        Route::post('/store', 'NewsNewsController@store');
+
+        Route::get('/edit/{id}', 'NewsNewsController@edit');
+        Route::post('/update/{id}', 'NewsNewsController@update');
+
+        Route::get('/destroy/{id}', 'NewsNewsController@destroy');
+    });
+
+    // 最新消息類別
+    Route::group(['prefix' => 'news_news_type'], function () {
+        Route::get('/', 'NewsNewsTypeController@index');
+
+        Route::get('/create', 'NewsNewsTypeController@create');
+        Route::post('/store', 'NewsNewsTypeController@store');
+
+        Route::get('/edit/{id}', 'NewsNewsTypeController@edit');
+        Route::post('/update/{id}', 'NewsNewsTypeController@update');
+
+        Route::get('/destroy/{id}', 'NewsNewsTypeController@destroy');
+    });
 });
 
 

@@ -39,7 +39,13 @@
                     <li class="nav-item">
                          <a class="nav-link" href="/admin/product">產品管理</a>
                     </li>
-                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/news_news_type">消息類別管理</a>
+                   </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="/admin/news_news">最新消息管理</a>
+                   </li>
+                   </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
