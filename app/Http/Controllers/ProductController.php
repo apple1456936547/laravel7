@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -42,11 +44,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Product::create($request->all());
+        // 取得create資料，存取圖片
+        $fileName = Storage::disk('public')->put('/images', $request->file('img'));
+        // 將create的資料放進 $product
+        $product = Product::create($request->all());
+        //將檔案路徑換掉
+        //  /storage/ --> ?
+        $product->img = '/storage/'.$fileName;
+        // 儲存
+        $product->save();
+
         return redirect('/admin/product');
     }
-
     /**
      * Display the specified resource.
      *
@@ -88,13 +97,27 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //讀取舊檔案
+
         $product = Product::find($id);
         $product->type_id = $request->type_id;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->img = $request->img;
+
+        // 判斷是否有新圖片
+        // 如果你沒有新增圖片，下面的if不會執行
+        // 選擇檔案那個按鈕
+        if($request->hasFile('img')){
+            if(file_exists(public_path().$product->img)){
+                // 刪除舊圖片
+                File::delete(public_path().$product->img);
+            }
+            // 儲存圖片路徑
+            $fileName = Storage::disk('public')->put('/images', $request->file('img'));
+            // 更新圖片路徑
+            $product->img = Storage::url($fileName);
+        }
 
         $product->save();
 

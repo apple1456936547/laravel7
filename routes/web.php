@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/update/{id}', 'NewsNewsTypeController@update');
 
         Route::get('/destroy/{id}', 'NewsNewsTypeController@destroy');
+    });
+
+    Route::get('/test',function () {
+    
+        Storage::disk('local')->put('/public/example.txt', 'content');
     });
 });
 

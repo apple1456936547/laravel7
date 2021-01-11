@@ -10,8 +10,7 @@
 <div class="container">
     <h2>新增產品</h2>
     <hr>
-    <form action="/admin/product/store " method="POST">
-
+    <form action="/admin/product/store " method="POST" enctype="multipart/form-data" >
         <div class="form-group">
             <label for="type_id">類別</label>
             {{-- 下拉式選單 --}}
@@ -21,7 +20,7 @@
                 <option value="{{$product_type->id}}">{{$product_type->name}}</option>
                 @endforeach
             </select>
-            
+
         </div>
 
         <div class="form-group">
@@ -34,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="img">圖片</label>
-            <input type="text" class="form-control" id="img" name="img" required>
+            <input type="file" class="form-control" id="img" name="img" required>
         </div>
         <div class="form-group">
             <label for="description">描述</label>

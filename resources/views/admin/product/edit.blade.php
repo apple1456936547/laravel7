@@ -10,7 +10,7 @@
 <div class="container">
     <h2>編輯產品</h2>
     <hr>
-    <form action="/admin/product/update/{{$product->id}} " method="POST">
+    <form action="/admin/product/update/{{$product->id}} " method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="type_id">類別</label>
@@ -32,10 +32,15 @@
             <input type="number" class="form-control" min="0" id="price" name="price"
             value={{$product->price}} required>
         </div>
+
         <div class="form-group">
-            <label for="img">圖片</label>
-            <input type="text" class="form-control" id="img" name="img"
-            value={{$product->img}} required>
+            <label for="img">目前圖片</label>
+            <img src="{{$product->img}}" alt="" width="200">
+        </div>
+
+        <div class="form-group">
+            <label for="img">重新上傳圖片</label>
+            <input type="file" class="form-control" id="img" name="img">
         </div>
         <div class="form-group">
             <label for="description">描述</label>
