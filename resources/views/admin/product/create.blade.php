@@ -31,9 +31,20 @@
             <label for="price">價格</label>
             <input type="number" class="form-control" min="0" id="price" name="price" required>
         </div>
+        {{-- 一張圖片 --}}
         <div class="form-group">
-            <label for="img">圖片</label>
-            <input type="file" class="form-control" id="img" name="img" required>
+
+            <label for="img">主要圖片</label>
+            <input type="file" class="form-control" id="img" name="img" required >
+
+        </div>
+        {{-- 多張圖片 --}}
+        <div class="form-group">
+        {{--multiple 為了可以選擇多張圖片  --}}
+        {{-- name="imgs" -> name="imgs[]" --}}
+        {{-- 中括號為了儲存多張圖片 --}}
+            <label for="imgs">其他圖片</label>
+            <input type="file" class="form-control" id="imgs" name="imgs[]" multiple>
         </div>
         <div class="form-group">
             <label for="description">描述</label>

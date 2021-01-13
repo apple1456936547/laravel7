@@ -42,6 +42,23 @@
             <label for="img">重新上傳圖片</label>
             <input type="file" class="form-control" id="img" name="img">
         </div>
+        <hr>
+        <div class="form-group">
+            <label for="img">其他圖片</label>
+            {{-- 一般方法資料傳送法 --}}
+            {{-- @foreach ($product_imgs as $imgs)
+            <img src="{{$imgs->url}}" alt="" width="200">
+            @endforeach --}}
+            {{-- 關聯資料傳送法 --}}
+            @foreach ($product->productImgs as $imgs)
+            <img src="{{$imgs->url}}" alt="" width="200">
+            @endforeach
+        </div>
+        <div class="form-group">
+            <label for="imgs">重新上傳圖片</label>
+            <input type="file" class="form-control" id="imgs" name="imgs[]">
+        </div>
+        <hr>
         <div class="form-group">
             <label for="description">描述</label>
             <textarea class="form-control" id="description" rows="5" name="description" required>{{$product->description}}</textarea>
