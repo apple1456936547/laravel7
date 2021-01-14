@@ -54,7 +54,8 @@
 
         main {
             height: 70vh;
-        }
+            background-image:url('https://lh3.googleusercontent.com/proxy/K_CVmmWYA62jGP0eKDa6pzq6vohGwTr0f80TGEqrnjBAOkJ9N4FqY3W8qT4hbsN6d-ZCko3xS6LHRN9E7Wdsq9i29ncTRYmEItI-2Io');
+
 
         a {
             color: white;
