@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 
 
@@ -31,12 +31,13 @@
         </div>
         <div class="form-group">
             <label for="content">內容</label>
-            <input type="text" class="form-control" min="0" id="content" name="content"
-            value={{$news_news->content}} required>
+            <textarea type="text" class="form-control" min="0" id="content" name="content"
+            value={{$news_news->content}} required></textarea>
+
         </div>
         <div class="form-group">
             <label for="date">日期</label>
-            <input type="text" class="form-control" id="date" name="date"
+            <input type="date" class="form-control" id="date" name="date"
             value={{$news_news->date}} required>
         </div>
         <button type="submit" class="btn btn-primary">更新</button>
@@ -48,5 +49,10 @@
 
 
 @section('js')
-
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#content').summernote();
+});
+</script>
 @endsection

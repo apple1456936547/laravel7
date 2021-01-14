@@ -160,7 +160,6 @@ class ProductController extends Controller
         // 關聯這個方法是直接幫你第一個方法做完(where)
         // 然後搭配關聯資料傳送法的edit.blade.php(其他圖片)
         return view('admin.product.edit', compact('product', 'product_types'));
-
     }
 
     /**
@@ -226,5 +225,26 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect('/admin/product');
+    }
+
+    public function deleteImg(Request $request)
+    {
+        // 利用id尋找產品圖片
+        $productImg = ProductImg::find($request->id);
+        // 刪除產品圖片檔案
+        // 判斷是否有找到productImg
+        if ($productImg) {
+            // 判斷舊圖片檔案是否存在
+            if (file_exists(public_path() . $productImg->url)) {
+                // 由於Storage::delete()判斷的跟目錄與我們存取
+                // 故改成使用File::delete()
+                File::delete(public_path() . $productImg->url);
+            }
+            // 刪除產品圖片資料
+            $productImg->delete();
+        }
+
+        // 返回success
+        return 'success';
     }
 }

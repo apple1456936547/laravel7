@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/edit/{id}', 'ProductController@edit');
         Route::post('/update/{id}', 'ProductController@update');
         Route::get('/destroy/{id}', 'ProductController@destroy');
+
+        Route::post('/delete_img','ProductController@deleteImg');
     });
 
     // 產品種類新增、編輯、刪除
@@ -79,7 +81,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     });
 
     Route::get('/test',function () {
-    
+
         Storage::disk('local')->put('/public/example.txt', 'content');
     });
 });

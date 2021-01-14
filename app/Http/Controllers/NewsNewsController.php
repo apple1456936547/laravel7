@@ -102,4 +102,9 @@ class NewsNewsController extends Controller
         $news_news->delete();
         return redirect('/admin/news_news');
     }
+
+    public function news(){
+        $newsData = NewsNews::get();
+        return view('layout.template',compact('newsData'));
+    }
 }

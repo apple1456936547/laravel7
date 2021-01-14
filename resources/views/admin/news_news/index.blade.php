@@ -1,10 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('css')
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 <style>
     th,td {
         text-align:center;
+    }
+    table {
+        margin:auto;
     }
 </style>
 
@@ -30,7 +33,7 @@
                 {{-- <td>{{$news->newsType->name ?? ''}}</td> --}}
                 <td>{{$news->newsnewsType->name}}</td>
                 <td>{{$news->title}}</td>
-                <td>{{$news->content}}</td>
+                <td>{!! $news->content !!}</td>
                 <td>{{$news->date}}</td>
                 <td>
                     <a class="btn btn-success" href="/admin/news_news/edit/{{$news->id}}">編輯</a>
