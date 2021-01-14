@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', 'FrontController@index');
 
+// 最新消息前台畫面 (網頁index.blade.php在views/front/news_news裡面)
+Route::get('/news_news', 'FrontController@news');
+
+// 產品前台畫面 (網頁index.blade.php在views/front/product裡面)
+Route::get('/product', 'FrontController@product');
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {

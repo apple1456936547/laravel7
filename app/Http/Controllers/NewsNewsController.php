@@ -103,8 +103,5 @@ class NewsNewsController extends Controller
         return redirect('/admin/news_news');
     }
 
-    public function news(){
-        $newsData = NewsNews::get();
-        return view('layout.template',compact('newsData'));
-    }
+    
 }

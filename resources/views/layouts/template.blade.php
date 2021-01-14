@@ -7,6 +7,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css">
 
+    {{-- 如果想要引用套件bootstrap4
+        必須先套用app.blade.php模板的 css link
+        以及 js link --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
     <style>
         body {
@@ -81,6 +86,10 @@
 
     <footer></footer>
 
+     {{-- 如果想要引用套件bootstrap4
+        必須先套用app.blade.php模板的 css link
+        以及 js link --}}
+    <script src="{{ asset('js/app.js')}}"></script>
     @yield('js')
 </body>
 </html>
