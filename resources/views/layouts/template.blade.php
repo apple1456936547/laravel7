@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,73 +9,89 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css">
 
     {{-- 如果想要引用套件bootstrap4
-        必須先套用app.blade.php模板的 css link
-        以及 js link --}}
+    必須先套用app.blade.php模板的 css link
+    以及 js link --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
     <style>
         body {
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         nav {
-            width:100%;
-            height:100px;
-            background-color:rgb(219, 196, 196);
-            /* border:1px black solid; */
+            width: 100%;
+            height: 100px;
+            background-color: rgb(36, 48, 209);
+
+        }
+
+        .title {
+            font-size:28px;
+            color:white;
+            margin-left:600px;
         }
 
         ul {
-            list-style:none;
-            padding:0;
-            margin:10px 0 0 0;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0 0;
 
-            display:flex;
-            align-items:center;
+            display: flex;
+            align-items: center;
 
-            width:100%;
+            width: 100%;
         }
 
         li {
-            margin:auto;
+            font-size: 20px;
+            margin: auto;
+            padding-top: 5px;
+            margin-top:10px;
         }
 
         main {
-            height:70vh;
+            height: 70vh;
         }
 
-        a{
-            text-decoration:none;
-            color:black;
+        a {
+            color: white;
+            text-decoration: none;
         }
 
         a:hover {
-            color:orangered;
-            font-weight:600;
+            text-decoration: none;
+            color: rgb(233, 136, 71);
+            font-weight: 600;
         }
 
 
         footer {
-            height:150px;
-            width:100%;
-            background-color:rgb(219, 196, 196);
+            height: 100px;
+            width: 100%;
+            background-color: rgb(36, 48, 209);
 
         }
+
     </style>
 
     @yield('css')
 </head>
+
 <body>
 
     <nav>
-        <i class="far fa-newspaper"style="font-size:40px;margin-left:calc(50% - 20px);margin-top:20px;"></i>
+        <span class="title">果果千層蛋糕</span>
         <ul>
-            <li><a href="">回首頁</a></li>
-            <li><a href="">第一頁</a></li>
-            <li><a href="">第二頁</a></li>
+            <hr>
+            <li><a href="">首頁</a></li>
+            <li><a href="">品牌故事</a></li>
+            <li><a href="">商品一覽</a></li>
+            <li><a href="">訂購專區</a></li>
+            <li><a href="">會員專區</a></li>
+            <li><a href="">聯絡我們</a></li>
         </ul>
     </nav>
 
@@ -86,10 +103,11 @@
 
     <footer></footer>
 
-     {{-- 如果想要引用套件bootstrap4
-        必須先套用app.blade.php模板的 css link
-        以及 js link --}}
-    <script src="{{ asset('js/app.js')}}"></script>
+    {{-- 如果想要引用套件bootstrap4
+    必須先套用app.blade.php模板的 css link
+    以及 js link --}}
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('js')
 </body>
+
 </html>

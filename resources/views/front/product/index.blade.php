@@ -22,7 +22,7 @@
     <div class="product_area row">
 
         @foreach ($products as $product)
-        <div class="card col-3 my-2">
+        <div class="card col-3 my-3 mx-5">
             <div class="card-img-top img" style="background-image:url({{$product->img}});"></div>
             <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
