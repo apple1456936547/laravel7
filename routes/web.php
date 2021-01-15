@@ -24,8 +24,22 @@ Route::get('/news_news', 'FrontController@news');
 // 產品前台畫面 (網頁index.blade.php在views/front/product裡面)
 Route::get('/product', 'FrontController@product');
 
+// 購物車
+// 有先去config/app.php新增購物車套件
+// 去裡面看 provider那邊有寫註解 product下面還有一個a..開頭的也要複製套件code
+// https://github.com/darryldecode/laravelshoppingcart
+Route::post('/add_cart','ShoppingCartController@addCart');
+
+// 購物車結帳頁面
+Route::get('/checkout','FrontController@checkout');
+
+Route::get('/create_order','FrontController@createOrder');
+
+// ----分隔線----
+
 Auth::routes();
 
+// 產品與消息的相關路由
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     // 都必須登入
@@ -89,6 +103,19 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('/test',function () {
 
         Storage::disk('local')->put('/public/example.txt', 'content');
+    });
+
+    // 訂單管理
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/', 'OrderController@index');
+
+        Route::get('/create', 'OrderController@create');
+        Route::post('/store', 'OrderController@store');
+
+        Route::get('/edit/{id}', 'OrderController@edit');
+        Route::post('/update/{id}', 'OrderController@update');
+
+        Route::get('/destroy/{id}', 'OrderController@destroy');
     });
 });
 

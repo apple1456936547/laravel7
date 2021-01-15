@@ -11,51 +11,50 @@
     }
 </style>
 
+
 @endsection
 
 @section('main')
 <div class="container py-5">
-    <a class="btn btn-success" href="/admin/news_news/create">新增最新消息</a>
-    <hr>
+    {{-- <a class="btn btn-success" href="/admin/news_news/create">新增最新消息</a> --}}
+    {{-- <hr> --}}
     <table id="myTable" class="display">
         <thead>
             <tr>
-                <th>類別</th>
-                <th>標題</th>
-                <th>內容</th>
-                <th>日期</th>
+                <th>訂單編號</th>
+                <th>姓名</th>
+                <th>電話</th>
+                <th>地址</th>
                 <th style="width:120px;">功能</th>
             </tr>
         </thead>
-        @foreach($news_news as $news)
+        @foreach($orders as $order)
         <tbody>
             <tr>
-                {{-- <td>{{$news->newsType->name ?? ''}}</td> --}}
-                <td>{{$news->newsnewsType->name}}</td>
-                <td>{{$news->title}}</td>
-                <td>{!! $news->content !!}</td>
-                <td>{{$news->date}}</td>
+                <td>{{$order->order_number}}</td>
+                <td>{{$order->name}}</td>
+                <td>{{$order->phone}}</td>
+                <td>{{$order->address}}</td>
+
                 <td>
-                    <a class="btn btn-success" href="/admin/news_news/edit/{{$news->id}}">編輯</a>
+                    <a class="btn btn-success" href="/admin/news_news/edit/{{$news->id}}">詳細</a>
 
                     <a class="btn btn-danger" href="/admin/news_news/destroy/{{$news->id}}">刪除</a>
                 </td>
             </tr>
         </tbody>
-         @endforeach
+        @endforeach
     </table>
 </div>
 
-
 @endsection
 
-@section('js')
 
+@section('js')
 <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );
 </script>
-
 @endsection

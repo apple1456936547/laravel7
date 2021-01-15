@@ -4,14 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css">
+    <title>Document</title>
+    {{-- fontasome --}}
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
 
     {{-- 如果想要引用套件bootstrap4
     必須先套用app.blade.php模板的 css link
     以及 js link --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css">
+
 
 
     <style>
@@ -23,39 +31,63 @@
 
         nav {
             width: 100%;
-            height: 100px;
-            background-color: rgb(36, 48, 209);
-
+            height: 125px;
+            background-color: rgb(67, 77, 223);
+            padding-top: 10px;
         }
 
-        .title {
-            font-size:28px;
-            color:white;
-            margin-left:600px;
+        nav span {
+            font-size: 32px;
+            color: rgb(223, 245, 22);
+            margin-left: calc(50% - 84px);
         }
 
         ul {
+            width: 60%;
             list-style: none;
-            padding: 0;
-            margin: 0 0 0 0;
-
+            padding-left: 0px;
+            margin: auto;
+            margin-top: 15px;
             display: flex;
-            align-items: center;
-
-            width: 100%;
+            justify-content: space-between;
         }
 
         li {
+            width: 10%;
             font-size: 20px;
-            margin: auto;
             padding-top: 5px;
-            margin-top:10px;
+            text-align: center;
         }
 
         main {
-            height: 70vh;
-            background-image:url('https://lh3.googleusercontent.com/proxy/K_CVmmWYA62jGP0eKDa6pzq6vohGwTr0f80TGEqrnjBAOkJ9N4FqY3W8qT4hbsN6d-ZCko3xS6LHRN9E7Wdsq9i29ncTRYmEItI-2Io');
+            height: 100vh;
+        }
 
+        .shopping_cart {
+            color: black;
+            font-size: 48px;
+            position: fixed;
+            right: 40px;
+            bottom: 30vh;
+        }
+
+        .shopping_cart .qty {
+            position: absolute;
+            color: #000;
+            width: 35px;
+            height: 35px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            background: #FFF;
+            font-size: 16px;
+            top: 0;
+            right: 0;
+            transform: translate(40%, -40%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
 
         a {
             color: white;
@@ -72,10 +104,8 @@
         footer {
             height: 100px;
             width: 100%;
-            background-color: rgb(36, 48, 209);
-
+            background-color: rgb(67, 77, 223);
         }
-
     </style>
 
     @yield('css')
@@ -84,9 +114,8 @@
 <body>
 
     <nav>
-        <span class="title">果果千層蛋糕</span>
+        <span class="title">奇奇拼圖</span>
         <ul>
-            <hr>
             <li><a href="">首頁</a></li>
             <li><a href="">品牌故事</a></li>
             <li><a href="">商品一覽</a></li>
@@ -96,9 +125,16 @@
         </ul>
     </nav>
 
-    <main>
 
+    <main>
+        <div id="app"></div>
         @yield('main')
+
+        <a href="/">
+            <i class="fas fa-shopping-cart shopping_cart">
+                <div class="qty"></div>
+            </i>
+           </a>
 
     </main>
 

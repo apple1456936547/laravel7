@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        // 貼購物車套件
+        Darryldecode\Cart\CartServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,6 +227,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // 貼購物車套件
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 
