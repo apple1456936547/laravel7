@@ -45,6 +45,7 @@ class FrontController extends Controller
 
     public function checkout() {
 
+        // 抓的是session的資料
         $carts = \Cart::getContent();
         return view('front.checkout.index',compact('carts'));
     }
@@ -57,8 +58,8 @@ class FrontController extends Controller
         // 建立訂單
         $order = Order::create([
             'user_id'=>Auth::user()->id,
-            'total_price'=>'',
-            'total_qty'=>'',
+            'total_price'=>'1',
+            'total_qty'=>'5',
             'phone'=>'0962588521',
             'address'=>'彰化縣',
             'name'=>'測試測試',

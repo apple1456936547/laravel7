@@ -37,9 +37,9 @@
                 <td>{{$order->address}}</td>
 
                 <td>
-                    <a class="btn btn-success" href="/admin/news_news/edit/{{$news->id}}">詳細</a>
+                    {{-- <a class="btn btn-success" href="/admin/news_news/edit/{{$news->id}}">詳細</a>
 
-                    <a class="btn btn-danger" href="/admin/news_news/destroy/{{$news->id}}">刪除</a>
+                    <a class="btn btn-danger" href="/admin/news_news/destroy/{{$news->id}}">刪除</a> --}}
                 </td>
             </tr>
         </tbody>

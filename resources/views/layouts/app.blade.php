@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -48,6 +46,11 @@
                    <li class="nav-item">
                     <a class="nav-link" href="/admin/order">訂單管理</a>
                    </li>
+
+                   {{-- @auth
+
+                   @endauth --}}
+
                    </ul>
 
                     <!-- Right Side Of Navbar -->
