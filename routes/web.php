@@ -37,10 +37,19 @@ Route::get('/create_order','FrontController@createOrder');
 
 // ----分隔線----
 
-Auth::routes();
+
+// middle-ware驗證
+// 下面會使註冊(register)不見
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+]);
+
+// ---分隔線----
 
 // 產品與消息的相關路由
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'admin'], function () {
 
     // 都必須登入
 
