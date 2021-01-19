@@ -9,6 +9,13 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+// 這裡要新增 (01-19進度)
+// 因為function register (下面的function)
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+
 class RegisterController extends Controller
 {
     /*
@@ -62,6 +69,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+    //新增使用者的資料
     protected function create(array $data)
     {
         return User::create([
@@ -69,5 +78,47 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    // 使用者註冊畫面(不包含後台畫面)
+    public function showRegistrationForm()
+    {
+        // 等等改成font.register
+        // 等等先創造一個使用者的register的view
+        return view('front.register');
+    }
+
+       //新增管理者的資料
+       protected function create_admin(array $data)
+       {
+           return User::create([
+               'name' => $data['name'],
+               'email' => $data['email'],
+               'password' => Hash::make($data['password']),
+           ]);
+       }
+       // 管理者註冊畫面(包含後台畫面-->在register.blade.php更動)
+       public function showAdminRegistrationForm()
+       {
+           //轉到後台的註冊畫面
+           return view('auth.register');
+       }
+
+    // 使用者送出表單後會來到這個function
+    // 會根據register.blade.php 表單裡面的 action 導到這個function
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
     }
 }

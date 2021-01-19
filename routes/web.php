@@ -38,11 +38,16 @@ Route::get('/create_order','FrontController@createOrder');
 // ----分隔線----
 
 
+// 01-19 現在要做的事情是要讓使用者與管理者的註冊分開
 // middle-ware驗證
-// 下面會使註冊(register)不見
+// Auth有寫一個註冊方法給使用者
+// 所以不用在特地寫一個註冊路由給管理者
 Auth::routes([
-    'register' => false,
+    // 下面會使註冊(register)不見
+    // 'register' => false,
+    // 密碼reset功能
     'reset' => false,
+    // 信箱驗證
     'verify' => false,
 ]);
 
@@ -51,7 +56,10 @@ Auth::routes([
 // 產品與消息的相關路由
 Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'admin'], function () {
 
-    // 都必須登入
+    // 管理員註冊 01-19
+    Route::get('/register','RegisterController@showAdminRegisterationForm');
+    Route::post('/register','RegisterController@showAdminRegisterationForm');
+
 
     Route::get('/', 'HomeController@index')->name('home');
 
