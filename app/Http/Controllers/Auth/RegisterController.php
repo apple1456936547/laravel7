@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 // 這裡要新增 (01-19進度)
 // 因為function register (下面的function)
+// 疑惑：這裡是import ?????
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
     /**
@@ -87,38 +88,83 @@ class RegisterController extends Controller
         return view('front.register');
     }
 
-       //新增管理者的資料
-       protected function create_admin(array $data)
-       {
-           return User::create([
-               'name' => $data['name'],
-               'email' => $data['email'],
-               'password' => Hash::make($data['password']),
-           ]);
-       }
-       // 管理者註冊畫面(包含後台畫面-->在register.blade.php更動)
-       public function showAdminRegistrationForm()
-       {
-           //轉到後台的註冊畫面
-           return view('auth.register');
-       }
+    //新增管理者的資料
+    protected function create_admin(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'type' => 'admin',
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+    // 管理者註冊畫面(包含後台畫面-->在register.blade.php更動)
+    public function showAdminRegistrationForm()
+    {
+        //轉到後台的註冊畫面
+        return view('auth.register');
+    }
 
     // 使用者送出表單後會來到這個function
     // 會根據register.blade.php 表單裡面的 action 導到這個function
     public function register(Request $request)
     {
+        // 先驗證表單送進的資料是否符合規則
         $this->validator($request->all())->validate();
 
+        // 拆解下面的function
+        // 資料驗證完後會先進到create(使用者)/create_admin(管理者)的function
+        // 就是上面的validator後面的create 和 create_admin 的function
+        // (現在請到create/create_admin function看)
+        // 然後把表單資料建立起來送進去User的Model裡面-->然後Model再把資料送進資料庫
+        // 做完上面的動作後把這串資料指給$user這個變數
+        // 而event做的事情就是讓我們知道有人註冊
         event(new Registered($user = $this->create($request->all())));
 
+        // event(new Registered($user = $this->create_admin($request->all())));
+
+        // 註冊完後直接登入
         $this->guard()->login($user);
 
+        // 待理解
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
 
+        // 網頁HTTP轉資料型態(待理解)
         return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath());
+            ? new JsonResponse([], 201)
+            // 導回頁面
+            : redirect($this->redirectPath());
+    }
+
+    // 管理者
+    public function admin_register(Request $request)
+    {
+        // 先驗證表單送進的資料是否符合規則
+        $this->validator($request->all())->validate();
+
+        // 拆解下面的function
+        // 資料驗證完後會先進到create(使用者)/create_admin(管理者)的function
+        // 就是上面的validator後面的create 和 create_admin 的function
+        // (現在請到create/create_admin function看)
+        // 然後把表單資料建立起來送進去User的Model裡面-->然後Model再把資料送進資料庫
+        // 做完上面的動作後把這串資料指給$user這個變數
+        // 而event做的事情就是讓我們知道有人註冊
+        event(new Registered($user = $this->create_admin($request->all())));
+
+        // 註冊完後直接登入
+        $this->guard()->login($user);
+
+        // 待理解
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        // 網頁HTTP轉資料型態(待理解)
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            // 導回頁面
+            : redirect($this->redirectPath());
     }
 }

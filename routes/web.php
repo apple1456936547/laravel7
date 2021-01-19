@@ -57,8 +57,8 @@ Auth::routes([
 Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'admin'], function () {
 
     // 管理員註冊 01-19
-    Route::get('/register','RegisterController@showAdminRegisterationForm');
-    Route::post('/register','RegisterController@showAdminRegisterationForm');
+    Route::get('/register','Auth\RegisterController@showAdminRegistrationForm');
+    Route::post('/register','Auth\RegisterController@admin_register');
 
 
     Route::get('/', 'HomeController@index')->name('home');
