@@ -118,7 +118,7 @@
         <ul>
             <li><a href="">首頁</a></li>
             <li><a href="">品牌故事</a></li>
-            <li><a href="">商品一覽</a></li>
+            <li><a href="/product">商品一覽</a></li>
             <li><a href="">訂購專區</a></li>
             <li><a href="">會員專區</a></li>
             <li><a href="">聯絡我們</a></li>
@@ -130,9 +130,11 @@
         <div id="app"></div>
         @yield('main')
 
-        <a href="/">
+        <a href="/checkout">
             <i class="fas fa-shopping-cart shopping_cart">
-                <div class="qty"></div>
+                <?php
+                    $getTotalQty=\Cart::getTotalQuantity(); ?>
+                <div class="qty">{{$getTotalQty}}</div>
             </i>
            </a>
 

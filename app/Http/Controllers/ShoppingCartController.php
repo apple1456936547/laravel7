@@ -10,6 +10,7 @@ class ShoppingCartController extends Controller
 {
     //
 
+    // 新增購物車商品
     public function addCart(Request $request)
     {
 
@@ -27,7 +28,8 @@ class ShoppingCartController extends Controller
                 'id' => $product->id, // inique row ID
                 'name' =>  $product->name,
                 'price' => $product->price,
-                'quantity' => 1,
+                // 購物車的數量
+                'quantity' => $request->qty,
                 'attributes' => array()
             ));
             // 抓出所有存在購物車裡產品的數量
@@ -38,5 +40,30 @@ class ShoppingCartController extends Controller
         else {
             return 'false';
         }
+    }
+
+    // 刪除購物車商品
+    public function delCart(Request $request){
+        // 刪除車子內符合ID的產品
+        // request->id
+        \Cart::remove($request->id);
+        // 抓出所有存在購物車裡產品的數量
+        $cartTotalQuantity = \Cart::getTotalQuantity();
+        // 返回購物車中產品總數
+        return $cartTotalQuantity;
+    }
+
+    // 新增購物車數量
+    public function updateCart(Request $request){
+
+        \Cart::update($request->id, array(
+            'quantity' => array(
+                'relative' => false,
+                'value' => $request->qty
+            ),
+        ));
+
+        $cartTotalQuantity = \Cart::getTotalQuantity();
+        return $cartTotalQuantity;
     }
 }

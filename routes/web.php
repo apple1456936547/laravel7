@@ -29,6 +29,8 @@ Route::get('/product', 'FrontController@product');
 // 去裡面看 provider那邊有寫註解 product下面還有一個a..開頭的也要複製套件code
 // https://github.com/darryldecode/laravelshoppingcart
 Route::post('/add_cart','ShoppingCartController@addCart');
+Route::post('/del_cart','ShoppingCartController@delCart');
+Route::post('/update_cart','ShoppingCartController@updateCart');
 
 // 購物車結帳頁面
 Route::get('/checkout','FrontController@checkout');
